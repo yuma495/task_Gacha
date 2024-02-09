@@ -2,16 +2,9 @@
 import PySimpleGUI as sg
 import random
 
-#ここにタスクの内容
-task=[
-    "ChatGPTでアニメ反応集",
-    "画像生成して睡眠動画作成",
-    "ショート動画作成",
-    "イラスト作成",
-    "Pairs",
-    "JavaSilverの資格勉強",
-    "Gitの使い方勉強",
-    "Java8のとJava5の違い"]
+#テキストファイルからタスク内容読み込み
+with open('./setting.txt', mode='r', encoding="utf-8") as f:
+    task = [line.strip() for line in f]
 
 layout = [  
     [sg.Text('今から行うタスクを決めます', font=("Helvetica", 16))],
