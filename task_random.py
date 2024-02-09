@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import PySimpleGUI as sg
 import random
-import time
 
 #ここにタスクの内容
 task=[
@@ -20,14 +19,14 @@ layout = [
     [[sg.Text(f"・{taskList}")] for taskList in task],
     [sg.Text('60:00', font=("Helvetica", 20), key='-TIMER-')],
     [sg.B('タスクガチャ'), sg.B('スタート', key='-START-'), sg.B('ストップ', key='-STOP-'), sg.Push()],
-    [sg.Multiline(size=(60,15), font=("Helvetica", 15), key='-result-')]
+    [sg.Multiline(size=(60,15), font=("Helvetica", 25), key='-result-')]
 ]
 
 window = sg.Window('タスクガチャ', layout, size=(700, 500))
 
 def gen_character():
-    ret="\n\n"
-    ret+=random.choice(task)
+    # ret="\n\n" #改行を追加したいときは
+    ret=random.choice(task)
     return ret
 
 last_task = ""
@@ -40,7 +39,7 @@ while True:
     if event == sg.WIN_CLOSED: 
         break
 
-    if event == 'ガチャ開始':
+    if event == 'タスクガチャ':
         new_task = gen_character()
         while new_task == last_task:
             new_task = gen_character()
